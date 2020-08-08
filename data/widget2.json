@@ -1,0 +1,25 @@
+{"widget": {
+    "debug": "off",
+    "window": {
+        "title": "Sample Konfabulator Widget",
+        "name": "main_window",
+        "width": 600,
+        "height": 500
+    },
+    "IMAGE": {
+        "src": "Images/Sun.png",
+        "name": "sun1",
+        "hOffset": "250",
+        "vOffset": 250,
+        "alignment": "left"
+    },
+    "TEXT": {
+        "data": "Click Here",
+        "size": 36,
+        "STYLE": "ITALIC",
+        "NAME": "text1",
+        "hOffset": "200",
+        "vOffset": "100",
+        "ALIGNMENT": "CENTER"
+    }
+}}

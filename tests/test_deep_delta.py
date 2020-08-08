@@ -5,7 +5,7 @@ from pprint import pprint
 from comparator import Comparator, with_precision
 from core import DeepDelta, DEFAULT_DELTA_CONFIG
 from delta_config import DeltaConfig
-from delta_output import DeltaOutput, Output_Buffer
+from delta_output import Output_Buffer
 
 
 class Employee:

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from __future__ import annotations
 from datetime import datetime, date
 import re
@@ -5,15 +6,14 @@ from decimal import Decimal
 from functools import singledispatch
 from typing import List, Tuple, Pattern, Union, Any, Mapping, Dict, Sequence, Callable, Set, Type, Collection
 
-from comparator import with_comparators
-from delta_config import DeltaConfig
+from .comparator import with_comparators
+from .delta_config import DeltaConfig
 
 import logging
 
-from delta_output import get_output
+from .delta_output import get_output
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
 
 
 """DeltaConfig to be used by default to:
@@ -502,11 +502,4 @@ class DeepDelta:
         """
         comparator = DeepDelta(options, type_comparators, named_comparators, *excluded_keys)
         return comparator.compare_any(lhs, rhs)
-
-
-
-
-
-
-
 

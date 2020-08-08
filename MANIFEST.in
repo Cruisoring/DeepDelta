@@ -1,0 +1,6 @@
+include LICENSE
+include *.rst
+include *.py
+include pytest.ini
+recursive-include tests *.py
+global-exclude *.py[co]
