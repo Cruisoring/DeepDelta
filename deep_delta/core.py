@@ -481,7 +481,7 @@ class DeepDelta:
                 options: DeltaConfig = None,
                 type_comparators: Dict[Union[Tuple[Type, Type], Type], Callable[[Any, Any], bool]] = None,
                 named_comparators: Dict[str, Callable[[Any, Any], bool]] = None,
-                *excluded_keys: List[Union[str, Pattern]]) -> Union[Dict, Tuple]:
+                *excluded_keys: List[Union[str, Pattern]]) -> Union[None, Tuple, Dict, str]:
         """ Entrance method to construct a new DeepDelta instance to compare two values.
 
         :param lhs: left-hand side value under comparison

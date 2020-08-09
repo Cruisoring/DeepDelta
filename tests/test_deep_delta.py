@@ -182,6 +182,7 @@ class Product:
         self.price = price
         self.unit = unit
 
+
 products1 = [
     Product(1001, 'dairy', 'milk', 'Coles', 2.99, None),
     Product(1202, 'bakery', 'bread', 'Subway', 2, '$/loaf'),
