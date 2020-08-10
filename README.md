@@ -9,20 +9,12 @@ DeepDelta is a compact Python library to compare any two objects with a rich set
 
 Install from PyPi:
 
-`>pip install deep_delta`
-
-Once installed, run following command to compare two JSON files:
-
-`>python -m deep_delta 'c:\py\deep_delta\data\widget1.json' data\widget2.json`
-
-With the sample files in the data folder, the output might be:
-
-`{'widget': {'window': {'width': (500, 600)}, 'debug': ('on', 'off'), 'text': {'style': ('bold', 'ITALIC'), 'hoffset': (250, '200')}, 'image': {'alignment': ('center', 'left')}}}`
+`>pip install deepdelta`
 
 
 ## How to use
 
-The main function to be called is ![DeepDelta.compare()|](https://github.com/Cruisoring/deep_delta/blob/master/deep_delta/core.py):
+The main function to be called is ![DeepDelta.compare()|](https://github.com/Cruisoring/DeepDelta/blob/master/deepdelta/core.py):
 ```
 def compare(lhs: Any, rhs: Any,
              options: DeltaConfig = None,
@@ -32,7 +24,7 @@ def compare(lhs: Any, rhs: Any,
 ```
                 
 There are 4 optional parameters in addition to the 2 data to be compared:
-1. **options** of type [DeltaConfig](https://github.com/Cruisoring/deep_delta/blob/master/deep_delta/delta_config.py): Flag/Enum based settings to specify how comparison to be performed.
+1. **options** of type [DeltaConfig](https://github.com/Cruisoring/DeepDelta/blob/master/deepdelta/delta_config.py): Flag/Enum based settings to specify how comparison to be performed.
 2. **type_comparators** of type *Dict[Union[Tuple[Type, Type], Type], Callable[[Any, Any], bool]]*: specifies how values of different types shall be compared.
 3. **named_comparators** of type *Dict[str, Callable[[Any, Any], bool]]*: defines how values with specific names would be compared with customised comparator.
 4. **excluded_keys** of type *List[Union[str, Pattern]]*: keys to be excluded from comparison if their path matched by either str or Pattern.
@@ -41,7 +33,7 @@ The output of comparing two values would be None/Tuple/Dict/str as specified by 
 
 ### Set comparison preferences
 
-The optional [DeltaConfig](https://github.com/Cruisoring/deep_delta/blob/master/deep_delta/delta_config.py) defines how DeepDelta would behave with options of:
+The optional [DeltaConfig](https://github.com/Cruisoring/DeepDelta/blob/master/deepdelta/delta_config.py) defines how DeepDelta would behave with options of:
 - Case sensitivity of keys and/or values
 - If spaces of keys and/or values shall be trimmed
 - Should keys ended/started with 'id' shall be treated as unique key to convert sequences to dicts
@@ -49,7 +41,7 @@ The optional [DeltaConfig](https://github.com/Cruisoring/deep_delta/blob/master/
 - If missing keys can be treated as whose values to be Nones
 - Output rules with pre-defined means to show the comparison result, the None/tuples is used by default
 
-If it is not specified, then the DEFAULT_DELTA_CONFIG defined in [core.py](https://github.com/Cruisoring/deep_delta/blob/master/deep_delta/core.py) as:
+If it is not specified, then the DEFAULT_DELTA_CONFIG defined in [core.py](https://github.com/Cruisoring/DeepDelta/blob/master/deepdelta/core.py) as:
 ```
 DEFAULT_DELTA_CONFIG: DeltaConfig = DeltaConfig.CaseIgnored\
                                     | DeltaConfig.SpaceTrimmed\
@@ -64,7 +56,7 @@ Thus the DeepDelta would compare two values by:
 4) Missing of a key is treated as if its value is defined as None
 5) Output in default format: Deltas as tuples of (left_value, right_value) if values are different, otherwise None    
 
-There are many examples of how it works in [test_deep_delta.py](https://github.com/Cruisoring/deep_delta/blob/master/tests/test_deep_delta.py).
+There are many examples of how it works in [test_deep_delta.py](https://github.com/Cruisoring/DeepDelta/blob/master/tests/test_deep_delta.py).
 
 ### Compare values of different types
 
@@ -76,13 +68,13 @@ You can define any type based comparator in two ways:
 1) The tuple of two types of the value to compare as the key. Like *(int, datetime)* as the key, then the associated function/lambda would be used to compare a *int* with a *datetime*, or a *datetime* with an *int*.
 2) The type of one value to be compared as the key. Hopefully you don't need it when there could be potential conflictions with other entries.
 
-The [comparator.py](https://github.com/Cruisoring/deep_delta/blob/master/deep_delta/comparator.py) has defined a common set of methods like:
+The [comparator.py](https://github.com/Cruisoring/DeepDelta/blob/master/deepdelta/comparator.py) has defined a common set of methods like:
 - compare two values of *float*/*int*/*Decimal*/*str* types as two float point numbers with optional digits to compare.
-- treat dedicated values (*{True, 'True', 'Yes', 'Y', 'Positive', 1, 'TRUE', 'yes'}*  as boolean **True** by default) as **True** and **False** that could be appended/modified with the static variables **TRUE_VALUES** and **FALSE_VALUES** of the [comparator.py](https://github.com/Cruisoring/deep_delta/blob/master/deep_delta/comparator.py).
-- compare str with *datetime* by convert it to *datetime* by trying a set of formats of **DATETIME_FORMATS** in the [comparator.py](https://github.com/Cruisoring/deep_delta/blob/master/deep_delta/comparator.py) that is also modifiable.
+- treat dedicated values (*{True, 'True', 'Yes', 'Y', 'Positive', 1, 'TRUE', 'yes'}*  as boolean **True** by default) as **True** and **False** that could be appended/modified with the static variables **TRUE_VALUES** and **FALSE_VALUES** of the [comparator.py](https://github.com/Cruisoring/DeepDelta/blob/master/deepdelta/comparator.py).
+- compare str with *datetime* by convert it to *datetime* by trying a set of formats of **DATETIME_FORMATS** in the [comparator.py](https://github.com/Cruisoring/DeepDelta/blob/master/deepdelta/comparator.py) that is also modifiable.
 _ treat **None** equal to Python default values (like 0, False, [] and etc.) when **DeltaConfig.NoneUnequalDefault** is set.
 
-If the **type_comparators** argument is not set, then the **DEFAULT_TYPE_COMPARATOR: Dict[Union[Tuple[Type, Type], Type], Callable[[Any, Any], bool]]** defined in the [comparator.py](https://github.com/Cruisoring/deep_delta/blob/master/deep_delta/comparator.py) would be used as a blue-print to enable inter-types comparisons between common values.
+If the **type_comparators** argument is not set, then the **DEFAULT_TYPE_COMPARATOR: Dict[Union[Tuple[Type, Type], Type], Callable[[Any, Any], bool]]** defined in the [comparator.py](https://github.com/Cruisoring/DeepDelta/blob/master/deepdelta/comparator.py) would be used as a blue-print to enable inter-types comparisons between common values.
 
 ### Compare values of specific names
 

@@ -6,12 +6,11 @@ from decimal import Decimal
 from functools import singledispatch
 from typing import List, Tuple, Pattern, Union, Any, Mapping, Dict, Sequence, Callable, Set, Type, Collection
 
-from .comparator import with_comparators
-from .delta_config import DeltaConfig
+from comparator import with_comparators
+from delta_config import DeltaConfig
+from delta_output import get_output
 
 import logging
-
-from .delta_output import get_output
 
 logger = logging.getLogger(__name__)
 
