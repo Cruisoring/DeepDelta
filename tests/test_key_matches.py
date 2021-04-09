@@ -1,7 +1,7 @@
 import logging
 import re
 
-from core import key_matches, matched_keys, get_matched_keys, key_denoted_by_id
+from deepdelta.core import key_matches, matched_keys, get_matched_keys, key_denoted_by_id
 
 logger = logging.getLogger(__name__)
 

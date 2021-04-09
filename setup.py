@@ -26,7 +26,8 @@ setuptools.setup(
         "Programming Language :: Python",
         "Programming Language :: Python :: 3",
     ],
-    packages=setuptools.find_packages(),
+    package_dir={"": "src"},
+    packages=setuptools.find_packages(where='src'),
     include_package_data=True,
     install_requires=[],
 )

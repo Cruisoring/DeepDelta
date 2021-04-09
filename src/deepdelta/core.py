@@ -6,9 +6,13 @@ from decimal import Decimal
 from functools import singledispatch
 from typing import List, Tuple, Pattern, Union, Any, Mapping, Dict, Sequence, Callable, Set, Type, Collection
 
-from comparator import with_comparators
-from delta_config import DeltaConfig
-from delta_output import get_output
+from deepdelta.comparator import with_comparators
+from deepdelta.delta_config import DeltaConfig
+from deepdelta.delta_output import get_output
+
+# from .delta_config import DeltaConfig
+# from .comparator import DEFAULT_TYPE_COMPARATOR, Comparator
+# from .delta_output import TYPE_ABBREVIATIONS, DeltaOutput, Output_Buffer
 
 import logging
 
@@ -211,14 +215,24 @@ def guess_keys(seq: Sequence, is_key: Callable = None, case_ignored: bool = True
     items = list(seq)
     item_types = {type(item) for item in items}
     if len(item_types) != 1:
-        raise TypeError(f"Sequence with different items of {','.join(item_types)} is not supported.")
+        return {}
+        # raise TypeError(f"Sequence with different items of {','.join(item_types)} is not supported.")
 
-    if issubclass(item_type := item_types.pop(), Mapping):
+    item_type = item_types.pop()
+    if issubclass(item_type, Mapping):
         key_sets = [set(item.keys()) for item in items]
         shared_keys = set.intersection(*key_sets)
-    elif hasattr(item_type, '__dict__'):
-        key_sets = [set(item.__dict__.keys()) for item in items]
-        shared_keys = set.intersection(*key_sets)
+    else: # if hasattr(item_type, '__dict__'):
+        if len(items) > 0 and hasattr(items[0], '__dict__'):
+            key_sets = [set(item.__dict__.keys()) for item in items]
+            shared_keys = set.intersection(*key_sets)
+        else:
+            shared_keys = {}
+
+    # else:
+    #     d = {i: items[i] for i in range(0, len(items))}
+    #     shared_keys = d.keys()
+
     return get_matched_keys(shared_keys, is_key, case_ignored, *keys)
 
 

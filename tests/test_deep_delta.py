@@ -2,10 +2,10 @@ import re
 from datetime import datetime
 from pprint import pprint
 
-from comparator import Comparator, with_precision
-from core import DeepDelta, DEFAULT_DELTA_CONFIG
-from delta_config import DeltaConfig
-from delta_output import Output_Buffer
+from deepdelta.comparator import Comparator, with_precision
+from deepdelta.delta_config import DeltaConfig
+from deepdelta.delta_output import Output_Buffer
+from deepdelta.core import DeepDelta, DEFAULT_DELTA_CONFIG
 
 
 class Employee:
@@ -226,3 +226,10 @@ def test_named_comparator():
                                   '2009': {'description': ('Hochy', 'Hochey'),
                                            'name': ('wipes', 'Wipes')},
                                   '5001': {'unit': ('per', 'piece')}}}
+
+
+def test_compare_array_with_dif_type():
+    left = { 'extra': [1, 2] }
+    right = { 'extra': [1, 2, 3]}
+    delta = DeepDelta.compare(left, right)
+    print(delta)

@@ -1,6 +1,6 @@
 import logging
 
-from core import guess_keys, sequence_to_dict, key_denoted_by_id
+from deepdelta.core import guess_keys, sequence_to_dict, key_denoted_by_id
 
 logger = logging.getLogger(__name__)
 

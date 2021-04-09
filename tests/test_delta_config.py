@@ -1,4 +1,4 @@
-from delta_config import DeltaConfig
+from deepdelta.delta_config import DeltaConfig
 
 
 def test_combined_flags():

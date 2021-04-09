@@ -1,7 +1,7 @@
 from typing import Any
 
-from delta_config import DeltaConfig
-from delta_output import DeltaOutput, get_output, Output_Buffer, set_output
+from deepdelta.delta_config import DeltaConfig
+from deepdelta.delta_output import DeltaOutput, get_output, Output_Buffer, set_output
 
 
 def test_get_value_abbrev():

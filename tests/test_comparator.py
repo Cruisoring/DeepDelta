@@ -3,7 +3,7 @@ from decimal import Decimal
 
 import pytest
 
-from comparator import as_float_str, compare_number_with_precision, with_precision, Comparator, compare_number_with_str, \
+from deepdelta.comparator import as_float_str, compare_number_with_precision, with_precision, Comparator, compare_number_with_str, \
     compare_bool_with_str, compare_datetime_with_str, compare_any_with_str, compare_any_with_none, are_equal
 
 

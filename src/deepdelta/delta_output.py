@@ -2,8 +2,7 @@ from __future__ import annotations
 
 from typing import Tuple, Any, Optional, Dict, Callable
 
-from delta_config import DeltaConfig
-
+from deepdelta.delta_config import DeltaConfig
 
 TYPE_ABBREVIATIONS = {
     list: '[...]',

@@ -104,7 +104,7 @@ class Comparator:
             for f in Comparator.DATETIME_FORMATS:
                 try:
                     return datetime.strptime(value, f)
-                except ValueError as ex:
+                except ValueError as _:
                     continue
 
             raise ValueError(f"Cannot get datetime from str: '{value}'")
