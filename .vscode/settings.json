@@ -1,9 +1,11 @@
 {
+    "python.terminal.activateEnvInCurrentTerminal": true,
     "python.terminal.activateEnvironment": true,
-    "python.pythonPath": "venv\\Scripts\\python.exe",
     "python.testing.cwd": "${workspaceFolder}",
     "python.testing.pytestArgs": [
-        "-s", "--html=results/report.html"
+        "-s", 
+        "-v",
+        "--html=results/report.html"
     ],
     "terminal.integrated.env.windows": {
         "PYTHONPATH": "${workspaceFolder}/src/deepdelta"
@@ -13,5 +15,6 @@
     "python.testing.nosetestsEnabled": false,
     "python.testing.pytestEnabled": true,
     "python.linting.pylintEnabled": false,
-    "python.linting.enabled": false
+    "python.linting.enabled": false,
+    "python.pythonPath": "venv\\Scripts\\python.exe"
 }
